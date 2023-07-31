@@ -9,6 +9,27 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
+  List<String> ProductName = [
+    'Mango',
+    'Orange',
+    'Grapes',
+    'Banana',
+    'Cherry',
+    'Peach',
+    'Mixed Fruits juice'
+  ];
+  List<String> ProductUnit = ['KG', 'KG', 'Kg', 'Dozen', 'KG', 'KG', 'item'];
+  List<int> ProductPrice = [120, 130, 200, 160, 140, 80, 100];
+  List<String> ProductImage = [
+    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
+    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
+    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
+    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
+    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
+    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
+    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +55,32 @@ class _ProductListState extends State<ProductList> {
           SizedBox(
             width: 15,
           ),
+        ],
+      ),
+      body: Column(
+        children: [
+          ListView.builder(
+              itemCount: ProductName.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Image(
+                                height: 100,
+                                width: 100,
+                                image: NetworkImage(
+                                    ProductImage[index].toString())),
+                            Text(index.toString())
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              })
         ],
       ),
     );
