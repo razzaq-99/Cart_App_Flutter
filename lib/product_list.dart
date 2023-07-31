@@ -19,7 +19,7 @@ class _ProductListState extends State<ProductList> {
     'Mixed Fruits juice'
   ];
   List<String> ProductUnit = ['KG', 'KG', 'Kg', 'Dozen', 'KG', 'KG', 'item'];
-  List<int> ProductPrice = [120, 130, 200, 160, 140, 80, 100];
+  List<int> ProductPrice = [20, 30, 20, 16, 14, 8, 10];
   List<String> ProductImage = [
     'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
     'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
@@ -59,28 +59,92 @@ class _ProductListState extends State<ProductList> {
       ),
       body: Column(
         children: [
-          ListView.builder(
-              itemCount: ProductName.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Expanded(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Image(
-                                height: 100,
-                                width: 100,
-                                image: NetworkImage(
-                                    ProductImage[index].toString())),
-                            Text(index.toString())
-                          ],
-                        )
-                      ],
+          Expanded(
+            child: ListView.builder(
+                itemCount: ProductName.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Image(
+                                  height: 100,
+                                  width: 100,
+                                  image: NetworkImage(
+                                      ProductImage[index].toString())),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      ProductName[index].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    Text(
+                                      ProductUnit[index].toString() +
+                                          "  " +
+                                          r"$" +
+                                          ProductPrice[index].toString(),
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Container(
+                                        height: 29,
+                                        width: 85,
+                                        decoration:  BoxDecoration(
+                                            color: Colors.green,
+                                          borderRadius: BorderRadius.circular(5),
+                                                
+                                        ),
+                                        
+                                        child: const Center(
+                                          child: Text(
+                                            "Add to cart",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w300,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              })
+                  );
+                }),
+          )
         ],
       ),
     );
