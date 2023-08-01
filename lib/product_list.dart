@@ -117,12 +117,11 @@ class _ProductListState extends State<ProductList> {
                                       child: Container(
                                         height: 29,
                                         width: 85,
-                                        decoration:  BoxDecoration(
-                                            color: Colors.green,
-                                          borderRadius: BorderRadius.circular(5),
-                                                
+                                        decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
-                                        
                                         child: const Center(
                                           child: Text(
                                             "Add to cart",
