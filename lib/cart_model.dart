@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Cart {
-  late final String? id;
+  late final int? id;
   final String? productId;
   final String? productName;
   final int? InitialPrice;
@@ -33,7 +33,7 @@ class Cart {
 
   Map<String, Object> ToMap() {
     return {
-      'Id': 'Id',
+      'id': 'id',
       'productId' : 'productId',
       'productName': 'productName',
       'InitialPrice': 'InitialPrice',

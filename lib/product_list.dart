@@ -1,5 +1,9 @@
 import 'package:badges/badges.dart' as badges;
+import 'package:cart_app/cart_model.dart';
+import 'package:cart_app/cart_provider.dart';
+import 'package:cart_app/db_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -9,6 +13,8 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
+  DBHelper? dbHelper = DBHelper();
+
   List<String> ProductName = [
     'Mango',
     'Orange',
@@ -32,6 +38,7 @@ class _ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -39,20 +46,24 @@ class _ProductListState extends State<ProductList> {
           style: TextStyle(fontSize: 22),
         ),
         centerTitle: true,
-        actions: const <Widget>[
+        actions: <Widget>[
           Center(
             child: badges.Badge(
-              badgeContent: Text(
-                '0',
-                style: TextStyle(color: Colors.white),
+              badgeContent: Consumer<CartProvider>(
+                builder: (context, value, child) {
+                  return Text(
+                    value.getCounter().toString(),
+                    style: TextStyle(color: Colors.white),
+                  );
+                },
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.shopping_cart,
                 size: 30,
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
         ],
@@ -114,21 +125,50 @@ class _ProductListState extends State<ProductList> {
                                     ),
                                     Align(
                                       alignment: Alignment.centerRight,
-                                      child: Container(
-                                        height: 29,
-                                        width: 85,
-                                        decoration: BoxDecoration(
-                                          color: Colors.green,
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: const Center(
-                                          child: Text(
-                                            "Add to cart",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w300,
-                                                color: Colors.white),
+                                      child: InkWell(
+                                        onTap: () {
+                                          dbHelper!
+                                              .insert(Cart(
+                                                  id: index,
+                                                  productId: index.toString(),
+                                                  productName:
+                                                      ProductName[index]
+                                                          .toString(),
+                                                  InitialPrice:
+                                                      ProductPrice[index],
+                                                  ProductPrice:
+                                                      ProductPrice[index],
+                                                  Quantity: 1,
+                                                  unitTag: ProductUnit[index]
+                                                      .toString(),
+                                                  image: ProductImage[index]
+                                                      .toString()))
+                                              .then((value) {
+                                            print("Product is added to cart");
+                                            cart.addTotalPrice(double.parse(
+                                                ProductPrice[index]
+                                                    .toString()));
+                                            cart.addCounter();
+                                          }).onError((error, stackTrace) {
+                                            print(error.toString());
+                                          });
+                                        },
+                                        child: Container(
+                                          height: 29,
+                                          width: 85,
+                                          decoration: BoxDecoration(
+                                            color: Colors.green,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              "Add to cart",
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w300,
+                                                  color: Colors.white),
+                                            ),
                                           ),
                                         ),
                                       ),
