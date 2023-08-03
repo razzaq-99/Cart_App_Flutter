@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:cart_app/cart_model.dart';
 import 'package:cart_app/cart_provider.dart';
+import 'package:cart_app/cart_screen.dart';
 import 'package:cart_app/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -47,19 +48,24 @@ class _ProductListState extends State<ProductList> {
         ),
         centerTitle: true,
         actions: <Widget>[
-          Center(
-            child: badges.Badge(
-              badgeContent: Consumer<CartProvider>(
-                builder: (context, value, child) {
-                  return Text(
-                    value.getCounter().toString(),
-                    style: TextStyle(color: Colors.white),
-                  );
-                },
-              ),
-              child: const Icon(
-                Icons.shopping_cart,
-                size: 30,
+          InkWell(
+            onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> const CartScreen()));
+            },
+            child: Center(
+              child: badges.Badge(
+                badgeContent: Consumer<CartProvider>(
+                  builder: (context, value, child) {
+                    return Text(
+                      value.getCounter().toString(),
+                      style: TextStyle(color: Colors.white),
+                    );
+                  },
+                ),
+                child: const Icon(
+                  Icons.shopping_cart,
+                  size: 30,
+                ),
               ),
             ),
           ),
