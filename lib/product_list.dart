@@ -5,6 +5,7 @@ import 'package:cart_app/cart_screen.dart';
 import 'package:cart_app/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'cart_provider.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -49,8 +50,9 @@ class _ProductListState extends State<ProductList> {
         centerTitle: true,
         actions: <Widget>[
           InkWell(
-            onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const CartScreen()));
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const CartScreen()));
             },
             child: Center(
               child: badges.Badge(
@@ -189,9 +191,11 @@ class _ProductListState extends State<ProductList> {
                     ),
                   );
                 }),
-          )
+          ),
+
         ],
       ),
     );
   }
 }
+
