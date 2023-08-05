@@ -17,7 +17,7 @@ class DBHelper {
     _db = await initDatabase();
   }
 
-  initDatabase() async {
+  Future<Database> initDatabase() async {
     io.Directory documentDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentDirectory.path, 'cart.db');
     var db = await openDatabase(path, version: 1, onCreate: _onCreate);
@@ -55,6 +55,6 @@ class DBHelper {
   Future<int> updateQuantity(Cart cart) async {
     var dbClient = await db;
     return await dbClient!
-        .update('cart',cart.ToMap(), where: 'id = ?', whereArgs: [cart.id]);
+        .update('cart', cart.ToMap(), where: 'id = ?', whereArgs: [cart.id]);
   }
 }
