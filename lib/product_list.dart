@@ -18,24 +18,24 @@ class _ProductListState extends State<ProductList> {
   DBHelper? dbHelper = DBHelper();
 
   List<String> ProductName = [
-    'Mango',
-    'Orange',
-    'Grapes',
-    'Banana',
-    'Cherry',
-    'Peach',
-    'Mixed Fruits juice'
+    'Iphone X',
+    'Iphone 8+',
+    'Iphone 7+',
+    'Iphone 11 Pro',
+    'Iphone 14 Pro',
+    'Samsung S23 ultra',
+    'Google Pixel 6 Pro'
   ];
-  List<String> ProductUnit = ['KG', 'KG', 'Kg', 'Dozen', 'KG', 'KG', 'item'];
-  List<int> ProductPrice = [20, 30, 20, 16, 14, 8, 10];
+  List<String> ProductUnit = ['price', 'price', 'price', 'price', 'price', 'price', 'price'];
+  List<int> ProductPrice = [200, 300, 210, 512, 680, 660, 1000];
   List<String> ProductImage = [
-    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
-    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
-    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
-    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
-    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
-    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
-    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
+    'https://www.shutterstock.com/image-photo/riga-latvia-march-25-2018-latest-1054927790',
+    'https://www.shutterstock.com/image-photo/kyiv-ukraine-january-24-2018-front-1016925994',
+    'https://www.shutterstock.com/image-photo/new-york-usa-december-28-2016-549209350',
+    'https://www.shutterstock.com/image-illustration/new-york-usa-november-24-2019-1570823752',
+    'https://www.shutterstock.com/image-photo/antalya-turkey-september-08-2022-newly-2199111735',
+    'https://www.shutterstock.com/image-vector/realistic-vector-flat-mock-samsung-galaxy-2259804073',
+    'https://www.shutterstock.com/image-photo/shenzhen-china-31-october-2021-google-2067563567',
   ];
 
   @override
